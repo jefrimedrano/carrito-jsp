@@ -1,0 +1,30 @@
+.contenedor{
+
+	width:95%;
+	margin:auto;
+}
+
+li>a{
+	color: white;
+}
+.productos{
+
+	text-align: center;
+	height:250px;
+	width:auto;
+
+}
+
+.imagenes{
+
+	text-align: center;
+	border: 2px;
+}
+.fotos{
+	height:400px;
+}
+.footer{
+
+	text-align: center;
+}
+
