@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 public class UsuarioDB extends Conexion {
     
-    
+    public String tipo;
     public boolean login(String user, String clave){
     
      try {
@@ -23,6 +23,7 @@ public class UsuarioDB extends Conexion {
             while(rs.next()){
             
                 if(user.equals(rs.getString("nombre")) && clave.equals(rs.getString("clave"))){
+                    tipo = rs.getString(5);
                    return true;
                 } 
             }
@@ -35,5 +36,24 @@ public class UsuarioDB extends Conexion {
 
       
      return false;
+    }
+    
+    public boolean registro(String nombre, String correo, String  clave){
+        String sql = "INSERT INTO usuarios (nombre,correo,clave,tipo) VALUES (?,?,?,?)";
+        try {
+            
+            PreparedStatement cn = Conexion.getConexion().prepareStatement(sql);
+            cn.setString(1, nombre);
+            cn.setString(2, correo);
+            cn.setString(3, clave);
+            cn.setString(4, "cliente");
+            cn.execute();
+            return true;
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+         return false;
     }
 }
