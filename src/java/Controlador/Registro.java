@@ -31,7 +31,7 @@ public class Registro extends HttpServlet {
         
         if(usuario.registro(nombre, correo, clave)==true){
         
-        response.sendRedirect("admin.jsp");
+        response.sendRedirect("index.jsp");
         }
     }
 

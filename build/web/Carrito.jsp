@@ -61,39 +61,41 @@
         <div class="container">
             <div class="col-md-12">
                 <div class="card h-100 ">
-                	<div class="card-footer footer">
-                		<a href="admin.jsp" class="btn btn-primary">seguir Compra</a>
-                	</div>
-                    <table>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Sub-Total</th>
-
-                        </tr>
-                        <tr>
-                            <%                                int id = Integer.parseInt(sesion.getAttribute("idusuario").toString());
-
-                                ArrayList<Carrito> Lista = CarritoDB.listaCarrito(id);
-                                int salto = 0;
-                                for (Carrito p : Lista) {
-                            %>
-
-                            <th><%=p.getNombre()%></th>
-                            <th><%=p.getPrecio()%></th>
-                            <th><%=p.getCantidad()%></th>
-                                <% int cantidad = p.getCantidad();
-                                    double precio = p.getPrecio();
-                                    double sub = cantidad * precio;
-                                %>
-                            <th><%= sub%> </th>
-                        </tr>
-                        <% }%>   
-                    </table>
                     <div class="card-footer footer">
-                		<input type="submit" class="btn btn-success" name="" value="Comprar">
-                		</div>  
+                        <a href="admin.jsp" class="btn btn-primary">seguir Compra</a>
+                    </div>
+                    
+                        <table>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Sub-Total</th>
+                            </tr>
+                            <tr>
+                                <%  int id = Integer.parseInt(sesion.getAttribute("idusuario").toString());
+                                    ArrayList<Carrito> Lista = CarritoDB.listaCarrito(id);
+                                    int salto = 0;
+                                    for (Carrito p : Lista) {
+                                %>
+
+                                <th><%=p.getNombre()%></th>
+                                <th><%=p.getPrecio()%></th>
+                                <th><%=p.getCantidad()%></th>
+                                    <% int cantidad = p.getCantidad();
+                                        double precio = p.getPrecio();
+                                        double sub = cantidad * precio;
+                                    %>
+                                <th><%= sub%> </th>
+                            </tr>
+                            <% }%> 
+
+                        </table>
+                            <form action="Ventas" method="post">
+                        <div class="card-footer footer">
+                            <input type="submit" class="btn btn-success" name="" value="Comprar">
+                        </div>  
+                    </form>
                 </div>
             </div>
         </div>

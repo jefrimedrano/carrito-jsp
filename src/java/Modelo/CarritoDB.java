@@ -39,6 +39,28 @@ public class CarritoDB extends Conexion {
          return lista;
     }
     
+    public static ArrayList<Carrito> lista(int codigo){
+        
+        ArrayList<Carrito> lista = new ArrayList<Carrito>();
+        try {
+            
+            String sql = "SELECT * FROM `carrito` WHERE id_usuario ="+codigo;
+            Statement cn = Conexion.getConexion().prepareStatement(sql);
+            ResultSet rs = cn.executeQuery(sql);
+            
+             while (rs.next()) {
+                Carrito p = new Carrito(rs.getInt(1), rs.getDouble(2), rs.getInt(3), rs.getInt(4));
+                System.out.print(p);
+                lista.add(p);
+
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(CarritoDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return lista;
+    }
+    
     public static boolean agregar(int id, double precio, int cantidad, int id_usuario){
     
         PreparedStatement cn = null;
@@ -60,6 +82,20 @@ public class CarritoDB extends Conexion {
             } catch (SQLException ex) {
                 Logger.getLogger(CarritoDB.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        
+        return false;
+    }
+    
+    public static boolean eliminar(int codigo){
+        try {
+            
+            String sql = "DELETE FROM `carrito` WHERE id_usuario="+codigo;
+            PreparedStatement cn = Conexion.getConexion().prepareStatement(sql);
+            cn.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(CarritoDB.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return false;

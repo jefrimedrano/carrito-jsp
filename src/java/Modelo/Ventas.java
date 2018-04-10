@@ -1,43 +1,36 @@
+
 package Modelo;
 
 /**
  *
  * @author jefri
  */
-public class Carrito {
-
+public class Ventas{
+    
+    private int id_ventas;
     private int id_producto;
     private double precio;
-    private int cantidad;
     private int id_usuario;
-    private String nombre;
+    private String fecha;
 
-    public Carrito(String nombre, double precio, int cantidad){
-        
-        this.nombre = nombre;
-        this.precio = precio;
-        this.cantidad = cantidad;
-    
-    }
-    
-    
-
-    public Carrito(int id_producto, double precio, int cantidad, int id_usuario) {
+    public Ventas(int id_ventas, int id_producto, double precio, int id_usuario, String fecha) {
+        this.id_ventas = id_ventas;
         this.id_producto = id_producto;
         this.precio = precio;
-        this.cantidad = cantidad;
         this.id_usuario = id_usuario;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.fecha = fecha;
     }
 
     
+    
+    public int getId_ventas() {
+        return id_ventas;
+    }
+
+    public void setId_ventas(int id_ventas) {
+        this.id_ventas = id_ventas;
+    }
+
     public int getId_producto() {
         return id_producto;
     }
@@ -54,14 +47,6 @@ public class Carrito {
         this.precio = precio;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
     public int getId_usuario() {
         return id_usuario;
     }
@@ -70,4 +55,13 @@ public class Carrito {
         this.id_usuario = id_usuario;
     }
 
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+    
+    
 }

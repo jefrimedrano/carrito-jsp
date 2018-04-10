@@ -49,6 +49,7 @@ public class UsuarioDB extends Conexion {
             cn.setString(2, correo);
             cn.setString(3, clave);
             cn.setString(4, "cliente");
+            tipo = "cliente";
             cn.execute();
             return true;
            
