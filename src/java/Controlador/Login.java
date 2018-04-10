@@ -1,6 +1,7 @@
 package Controlador;
 
 import java.io.IOException;
+import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,19 +16,21 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
         Modelo.UsuarioDB usuariodb = new Modelo.UsuarioDB();
-        
+
         System.out.print(user + pass);
         System.out.print(usuariodb.tipo);
+        System.out.print(usuariodb.idUsuario);
         if (usuariodb.login(user, pass) == true) {
-            
+
             HttpSession sesion = request.getSession();
             sesion.setAttribute("usuario", user);
             sesion.setAttribute("tipo", usuariodb.tipo);
+            sesion.setAttribute("idusuario", usuariodb.idUsuario);
             response.sendRedirect("admin.jsp");
+
         }
     }
 

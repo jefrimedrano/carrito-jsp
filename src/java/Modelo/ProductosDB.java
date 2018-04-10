@@ -37,15 +37,15 @@ public class ProductosDB extends Conexion {
 
     public static Productos obtenerid(int codigo) {
 
-        String sql = "SELECT * FROM productos WHERE id_productos = ?";
+        String sql = "SELECT * FROM `productos` WHERE `id_productos` =" +codigo;
         Productos productos = null;
          PreparedStatement cn = null;
         try {
 
             cn = Conexion.getConexion().prepareStatement(sql);
-            cn.setInt(1,codigo);
+            //cn.setInt(1,codigo);
             ResultSet rs = cn.executeQuery(sql);
-            
+            System.out.print("no ahi problema en el metodo DB");
              while (rs.next()) {
                 productos  = new Productos(rs.getInt(1), rs.getString(2), rs.getString(3),
                         rs.getDouble(4), rs.getString(5));

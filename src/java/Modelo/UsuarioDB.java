@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 public class UsuarioDB extends Conexion {
     
     public String tipo;
+    public int idUsuario;
     public boolean login(String user, String clave){
     
      try {
@@ -23,7 +24,8 @@ public class UsuarioDB extends Conexion {
             while(rs.next()){
             
                 if(user.equals(rs.getString("nombre")) && clave.equals(rs.getString("clave"))){
-                    tipo = rs.getString(5);
+                    idUsuario = rs.getInt("id_usuario");
+                    tipo = rs.getString("tipo");
                    return true;
                 } 
             }

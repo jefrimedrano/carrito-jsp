@@ -21,6 +21,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>Medrano Sport | Inicio</title>
+      
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -30,29 +31,29 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                   
+
                     <li class="nav-item">
                         <a class="nav-item nav-link" href="#">Perfil</a>
                     </li>
-                     <%
-                        
-                         if(sesion.getAttribute("tipo").equals("admin")){
-                        
-                             out.print("<a class=\"nav-item nav-link\" href=\"webs/login.jsp\">Agregar Producto</a>");
-                             out.print("<a class=\"nav-item nav-link\" href=\"webs/login.jsp\">Ventas</a>");
+                    <%
+
+                        if (sesion.getAttribute("tipo").equals("admin")) {
+
+                            out.print("<a class=\"nav-item nav-link\" href=\"webs/login.jsp\">Agregar Producto</a>");
+                            out.print("<a class=\"nav-item nav-link\" href=\"webs/login.jsp\">Ventas</a>");
                         }
-                        
+
                     %>
                 </ul>
 
-                 <ul class="navbar-nav ml-auto">
-                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#"><img src="img/carrito1.png"></a>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="Carrito.jsp"><img src="img/carrito1.png"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Cerrar Session</a>
+                        <a class="nav-link disabled" href="index.jsp">Cerrar Session</a>
                     </li>
-                 </ul>
+                </ul>
             </div>
         </nav>
         <br>
@@ -91,7 +92,10 @@
             <h1>Catalogo de nuestros productos</h1>
             <br>
             <div class="row">
-                <% ArrayList<Productos> Lista = ProductosDB.obtenerProductos();
+                
+                <% 
+                    
+                    ArrayList<Productos> Lista = ProductosDB.obtenerProductos();
 
                     int salto = 0;
                     for (Productos p : Lista) {
@@ -99,28 +103,32 @@
 
                 <div class="col-lg-4 col-md-4 mb-4 con">
                     <div class="card h-100 con">
-                        <div class="productos">
-                            <a href="AgregarProducto.jsp?id=<%=p.getId_producto()%>"><img class="card-img-top" src="img/<%=p.getImagen()%>" alt="" ></a>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Modelo: <%= p.getNombre()%> </a>
-                            </h4>
-                            <h5>Precio: <%=p.getPrecio()%></h5>
-                            <h3> Marca: <%=p.getMarca()%></h3>
-                        </div>
-                        <div class="card-footer footer">
-                            <li class="col-md-4 btn btn-primary"><a href="AgregarProducto.jsp?id="<%=p.getId_producto()%>>Agregar</a></li>
-                            <% 
-                                if(sesion.getAttribute("tipo").equals("admin")){
-                                    
-                                    %>
-                                    <li class="col-md-4 btn btn-success"><a href="#">Modificar</a></li>       
+                        <form action="Carrito?codigo=<%=p.getId_producto()%>&precio=<%=p.getPrecio()%>" method="post">
+                            <div class="productos">
+                                <img class="card-img-top" src="img/<%=p.getImagen()%>" alt="" >
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="#">Modelo: <%= p.getNombre()%> </a>
+                                </h4>
+                                <h5>Precio: <%=p.getPrecio()%></h5>
+                                <h3> Marca: <%=p.getMarca()%></h3>
+                                <label>Cantidad</label>
+                                <input type="text"  name="cantidad"  placeholder="Cantidad">
+                            </div>
+                            <div class="card-footer footer">
+
+                                <input type="submit" value="Agregar" class="btn btn-primary">
                                 <%
-                                }
-                            %>
-                           
-                        </div>
+                                    if (sesion.getAttribute("tipo").equals("admin")) {
+
+                                %>
+                                <li class="col-md-4 btn btn-success"><a href="#">Modificar</a></li>       
+                                    <%                                    }
+                                    %>
+
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <%

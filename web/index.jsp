@@ -20,7 +20,7 @@
         <title>Medrano Sport | Inicio</title>
     </head>
     <body>
-        
+
         <%
             HttpSession sesion = request.getSession();
             sesion.invalidate();
@@ -59,7 +59,7 @@
                             <input type="text" name="nombre" id="nombre"  placeholder="Nombre">
                             <input type="text" name="correo" id="correo" placeholder="Correo">
                             <input type="password" name="clave" id="clave" placeholder="clave">
-                            
+
                             <input class="btn btn-success" type="submit" value="Registar">
 
                         </form>
@@ -96,7 +96,7 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
-                    
+
                 </div >
                 <% ArrayList<Productos> Lista = ProductosDB.obtenerProductos();
 
@@ -107,7 +107,7 @@
                 <div class="col-lg-4 col-md-4 mb-4 ">
                     <div class="card h-100 ">
                         <div class="productos">
-                            <a href="AgregarProducto.jsp?id=<%=p.getId_producto()%>"><img class="card-img-top " src="img/<%=p.getImagen()%>" alt="" ></a>
+                            <img class="card-img-top " src="img/<%=p.getImagen()%>" alt="" >
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">
